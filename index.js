@@ -7,6 +7,10 @@ const discordCard = {id: 3, name: "Discord", power: 5}
 
 const cards = [claudeCard, arthuCard, discordCard]
 
+function validCard(body) {
+    return body && typeof body.name === "string" && body.name !== "" && typeof body.power === "number"
+}
+
 app.use(express.json())
 
 app.get("/", (req, res) => {
@@ -27,7 +31,7 @@ app.get("/cartas", (req, res) => {
 })
 
 app.post("/cartas", (req, res) => {
-    if (!req.body || typeof req.body.name !== "string" || typeof req.body.power !== "number" || !req.body.name) {
+    if (!validCard(req.body)) {
         return res.status(400).json({erro: "Nao encontrei um nome ou poder para a carta."})
     }
     const ids = cards.map((i) => i.id)
@@ -40,7 +44,7 @@ app.post("/cartas", (req, res) => {
 app.put("/cartas/:id", (req, res) => {
     const id = Number(req.params.id)
     const card = cards.find((c) => c.id === id)
-    if (!req.body || typeof req.body.name !== "string" || typeof req.body.power !== "number" || !req.body.name){
+    if (!validCard(req.body)){
         return res.status(400).json({erro: "Nao encontrei um nome ou poder para a carta."})
     }
     if (!card) {
