@@ -4,7 +4,7 @@ A JavaScript API for learning purposes
 
 ## About
 
-A card management API that lets you list, create, and delete cards.
+A card management API that lets you list, create, update, and delete cards.
 The idea was inspired by my other project, [Gwent](https://github.com/SmileZ115/gwent), and this is my first backend, built with Node.js and Express as a learning exercise.
 
 ## Features
@@ -12,6 +12,7 @@ The idea was inspired by my other project, [Gwent](https://github.com/SmileZ115/
 - Create cards
 - List those cards
 - Look for a specific card by its ID
+- Update a card
 - Delete a card
 
 ## Built With
@@ -35,6 +36,7 @@ The idea was inspired by my other project, [Gwent](https://github.com/SmileZ115/
 | GET | `/cartas` | List all cards | 200 | - |
 | GET | `/cartas/:id` | Get a card by its ID | 200 | 404 |
 | POST | `/cartas` | Create a card | 201 | 400 |
+| PUT | `/cartas/:id` | Update a card | 200 | 400, 404 |
 | DELETE | `/cartas/:id` | Delete a card by its ID | 204 | 404 |
 
 ### Example

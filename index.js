@@ -37,6 +37,20 @@ app.post("/cartas", (req, res) => {
     return res.status(201).json(newCard)
 })
 
+app.put("/cartas/:id", (req, res) => {
+    const id = Number(req.params.id)
+    const card = cards.find((c) => c.id === id)
+    if (!req.body || typeof req.body.name !== "string" || typeof req.body.power !== "number" || !req.body.name){
+        return res.status(400).json({erro: "Nao encontrei um nome ou poder para a carta."})
+    }
+    if (!card) {
+        return res.status(404).json({erro: "Essa carta nao foi encontrada."})
+    }
+    card.name = req.body.name
+    card.power = req.body.power
+    return res.status(200).json(card)
+})
+
 app.delete("/cartas/:id", (req, res) => {
     const id = Number(req.params.id)
     const index = cards.findIndex((c) => c.id === id)
