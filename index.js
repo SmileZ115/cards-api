@@ -1,15 +1,12 @@
 const express = require("express")
 const app = express()
+const validCard = require("./validCard")
 
 const claudeCard = {id: 1, name: "Claude", power: 20}
 const arthuCard = {id: 2, name: "Arthu", power: 10}
 const discordCard = {id: 3, name: "Discord", power: 5}
 
 const cards = [claudeCard, arthuCard, discordCard]
-
-function validCard(body) {
-    return body && typeof body.name === "string" && body.name !== "" && typeof body.power === "number"
-}
 
 app.use(express.json())
 
