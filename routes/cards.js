@@ -8,6 +8,10 @@ const discordCard = {id: 3, name: "Discord", power: 5}
 
 const cards = [claudeCard, arthuCard, discordCard]
 
+router.get("/", (req, res) => {
+    res.json(cards)
+})
+
 router.get("/:id", (req, res) => {
     const id = Number(req.params.id)
     const card = cards.find((c) => c.id === id)
@@ -15,10 +19,6 @@ router.get("/:id", (req, res) => {
         return res.status(404).json({erro: "Essa carta nao foi encontrada."})
     }
     res.json(card)
-})
-
-router.get("/", (req, res) => {
-    res.json(cards)
 })
 
 router.post("/", (req, res) => {
