@@ -23,7 +23,7 @@ The idea was inspired by my other project, [Gwent](https://github.com/SmileZ115/
 
 ## How to Run
 
-1. Make sure you have Node.js `v22.18.0` or newer (...)
+1. Make sure you have Node.js `v22.18.0` or newer (running `.ts` files directly was introduced in `v22.6.0`, but only works by default, without an experimental flag, from `v22.18.0`)
 2. Clone the repository and enter the folder:
 
 ```
