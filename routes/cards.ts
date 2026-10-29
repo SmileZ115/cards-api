@@ -1,12 +1,14 @@
-const express = require("express")
-const router = express.Router()
-const validCard = require("../validCard")
+import { Router } from "express"
+import { validCard} from "../validCard.ts"
+import type { Card } from "../types.ts"
+
+const router = Router()
 
 const claudeCard = {id: 1, name: "Claude", power: 20}
 const arthuCard = {id: 2, name: "Arthu", power: 10}
 const discordCard = {id: 3, name: "Discord", power: 5}
 
-const cards = [claudeCard, arthuCard, discordCard]
+const cards: Card[] = [claudeCard, arthuCard, discordCard]
 
 router.get("/", (req, res) => {
     res.json(cards)
@@ -56,4 +58,4 @@ router.delete("/:id", (req, res) => {
     res.status(204).send()
 })
 
-module.exports = router
+export default router

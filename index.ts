@@ -1,6 +1,7 @@
-const express = require("express")
+import express from "express"
+import router from "./routes/cards.ts"
+
 const app = express()
-const router = require("./routes/cards")
 
 app.use(express.json())
 

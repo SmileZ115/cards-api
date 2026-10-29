@@ -1,10 +1,11 @@
 {
-  "name": "api-cartas",
+  "name": "cards-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "teste.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "A card management API that lets you list, create, update, and delete cards.",
+  "main": "index.ts",
+  "scripts": { 
+    "dev": "node --watch index.ts",
+    "check": "tsc --noEmit"
   },
   "keywords": [],
   "type": "module",
