@@ -23,12 +23,17 @@ The idea was inspired by my other project, [Gwent](https://github.com/SmileZ115/
 
 ## How to Run
 
-1. Clone this repository
-2. Navigate to the folder
-3. Make sure you have Node.js `v22.18.0` or newer (running `.ts` files directly was introduced in `v22.6.0`, but only works by default, without an experimental flag, from `v22.18.0`)
-4. Install the packages with `npm install`
-5. Start the server with `npm run dev`
-6. Access the server via `http://localhost:3000`
+1. Make sure you have Node.js `v22.18.0` or newer (...)
+2. Clone the repository and enter the folder:
+
+```
+git clone https://github.com/SmileZ115/cards-api.git
+cd cards-api
+```
+
+3. Install the packages with `npm install`
+4. Start the server with `npm run dev`
+5. Access the server via `http://localhost:3000`
 
 ## Routes
 
