@@ -1,12 +1,17 @@
 import { Router } from "express";
-import { getAllCards, 
+import { 
+getAllCards, 
 createCard,
 getCardById,
 deleteCard,
 updateCardPower,
 getCardsByMinPower
 } from "../services/cardService.js";
-import { validateCardBody } from "../validation.js";
+import {
+validateCardBody,
+isValidCardId,
+isValidPower
+} from "../validation.js";
 
 const router = Router()
 
@@ -39,7 +44,7 @@ router.get("/strong", (req, res) => {
 
 router.get("/:id", (req, res) => {
     const id = Number(req.params.id)
-    if(!Number.isInteger(id) || id <= 0) {
+    if(!isValidCardId(id)) {
         res.status(400).json({ error: "Invalid ID"})
         return
     }
@@ -53,7 +58,7 @@ router.get("/:id", (req, res) => {
 
 router.delete("/:id", (req, res) => {
     const id = Number(req.params.id)
-        if(!Number.isInteger(id) || id <= 0) {
+        if(!isValidCardId(id)) {
             res.status(400).json({ error: "Invalid ID"})
             return
         }
@@ -68,11 +73,11 @@ router.delete("/:id", (req, res) => {
 router.patch("/:id", (req, res) => {
     const id = Number(req.params.id)
     const newPower: unknown = req.body?.power
-    if(!Number.isInteger(id) || id <= 0) {
+    if(!isValidCardId(id)) {
         res.status(400).json({ error: "Invalid ID"})
         return
     }
-    if(typeof newPower != "number" || newPower <= 0 || !Number.isFinite(newPower)) {
+    if(!isValidPower(newPower)) {
         res.status(400).json({ error: "Invalid Power."})
         return
     }
