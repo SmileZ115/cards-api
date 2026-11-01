@@ -1,21 +1,15 @@
 import type { Card } from "../types.js";
-import { findAllCards, findCardById } from "../repositories/cardRepository.js";
-
-const cards: Card[] = [
-  { id: 1, name: "Geralt", power: 15 },
-  { id: 2, name: "Ciri", power: 12 },
-  { id: 3, name: "Yennefer", power: 8 }
-]
+import { findAllCards, findCardById, findCardsByMinPower, insertCard, removeCard, generateCardId } from "../repositories/cardRepository.js";
 
 export function getAllCards(): Card[] {
     return findAllCards()
 }
 
 export function createCard(name: string, power: number): Card {
-    const newId = generateCardId(cards)
+    const newId = generateCardId()
     const newCard = {id: newId, name, power}
 
-    cards.push(newCard)
+    insertCard(newCard)
 
     return newCard
 }
@@ -25,14 +19,7 @@ export function getCardById(id: number): Card | undefined {
 }
 
 export function deleteCard(id: number): boolean {
-    const index = cards.findIndex((c) => c.id === id)
-
-    if (index >= 0) {
-        cards.splice(index, 1)
-        return true
-    }
-
-    return false
+    return removeCard(id)
 }
 
 export function updateCardPower(id: number, newPower: number): Card | undefined {
@@ -48,19 +35,5 @@ export function updateCardPower(id: number, newPower: number): Card | undefined 
 }
 
 export function getCardsByMinPower(minPower: number): Card[] {
-    const chosenCards = cards.filter((c) => c.power >= minPower)
-
-    return chosenCards
-}
-
-function generateCardId(cards: Card[]): number {
-    let highestId = 0
-
-    for (const card of cards) {
-        if (card.id > highestId) {
-            highestId = card.id
-        }
-    }
-
-    return highestId + 1
+    return findCardsByMinPower(minPower)
 }

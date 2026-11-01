@@ -131,3 +131,18 @@ The `minPower` parameter must be a finite number greater than or equal to zero.
 curl -i -X PATCH http://localhost:3000/cards/1 \
   -H "Content-Type: application/json" \
   -d '{"power":20}'
+
+## Architecture
+
+The aplication follows a layered architecture:
+
+- Routes: Define the API endpoints and connect them to controllers.
+- Controllers: Handle HTTP requests, validate input, ans send responses.
+- Services: Coordinate card operations and business logic.
+- Repository: Handles data storage and retrieval using an in memory array.
+
+## Data persistence
+
+Cards are currently stored in memory. Restarting the server restores the initial cards.
+
+The repository layer was introduced to separate storage operations from the rest of the application, making future database integration easier.

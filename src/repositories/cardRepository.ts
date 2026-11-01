@@ -15,3 +15,35 @@ export function findCardById(id: number): Card | undefined {
 
     return foundCard
 }
+
+export function findCardsByMinPower(minPower: number): Card[] {
+    const foundCards = cards.filter((c) => c.power >= minPower)
+    return foundCards
+}
+
+export function insertCard(card: Card): void {
+    cards.push(card)
+}
+
+export function removeCard(id: number): boolean {
+    const index = cards.findIndex((c) => c.id === id)
+
+    if (index >= 0) {
+        cards.splice(index, 1)
+        return true
+    }
+
+    return false
+}
+
+export function generateCardId(): number {
+    let highestId = 0
+
+    for (const card of cards) {
+        if (card.id > highestId) {
+            highestId = card.id
+        }
+    }
+
+    return highestId + 1
+}
