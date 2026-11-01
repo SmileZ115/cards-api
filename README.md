@@ -131,6 +131,7 @@ The `minPower` parameter must be a finite number greater than or equal to zero.
 curl -i -X PATCH http://localhost:3000/cards/1 \
   -H "Content-Type: application/json" \
   -d '{"power":20}'
+```
 
 ## Architecture
 
